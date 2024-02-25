@@ -1,4 +1,4 @@
-namespace Technolab.OnlineLibrary.Web.Models
+namespace Technolab.OnlineLibrary.Web.ViewModels
 {
     public class ErrorViewModel
     {

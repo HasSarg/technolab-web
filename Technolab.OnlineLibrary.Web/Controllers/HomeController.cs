@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Technolab.OnlineLibrary.Web.Models;
+using Technolab.OnlineLibrary.Web.ViewModels;
 
 namespace Technolab.OnlineLibrary.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
