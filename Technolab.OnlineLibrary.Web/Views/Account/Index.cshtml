@@ -2,9 +2,7 @@
     ViewData["Title"] = "My Account";
 }
 
-<h1 class="display-4">Welcome, @User.GetFullName()!</h1>    
+<h1 class="display-4">Welcome, @User.GetFullName()!</h1>
 
 
-<form action="/Account/ChangePassword" method="post">
-    <button type="submit" class="btn btn-primary">Change Password</button>
-</form>
+<a asp-action="ChangePassword" class="link-primary">Change Password</a>
