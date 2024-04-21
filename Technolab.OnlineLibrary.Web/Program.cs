@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Technolab.OnlineLibrary.Web;
 using Technolab.OnlineLibrary.Web.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +26,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy(AuthorizationPolicies.Admins, 
+    options.AddPolicy(AuthorizationPolicies.Admins,
         policy => policy.RequireClaim(Consts.Claim.UserRole, Consts.Role.Admin));
     options.AddPolicy(AuthorizationPolicies.Users,
         policy => policy.RequireClaim(Consts.Claim.UserRole, Consts.Role.User));
@@ -54,7 +57,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}")
-    .RequireAuthorization();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+).RequireAuthorization();
 
 app.Run();
